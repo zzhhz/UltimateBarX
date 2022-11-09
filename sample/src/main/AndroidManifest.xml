@@ -10,28 +10,56 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ViewPagerActivity"/>
-        <activity android:name=".SwitchActivity" />
-        <activity android:name=".TransparentActivity" />
-        <activity android:name=".ScrollActivity" />
-        <activity android:name=".ViewPagerActivity2" />
-        <activity android:name=".SwitchFragmentActivity" />
-        <activity android:name=".DrawerActivity" />
-        <activity android:name=".RecyclerFragmentActivity" />
-        <activity android:name=".FragmentStackActivity" />
-        <activity android:name=".AddPaddingActivity" />
-        <activity android:name=".CoordinatorActivity"
-            android:theme="@style/CoordinatorTheme"/>
-        <activity android:name=".bottomnav.BottomNavActivity" />
-        <activity android:name=".adjustresize.AdjustResizeActivity"
-            android:windowSoftInputMode="adjustResize|stateAlwaysHidden"/>
+        <activity
+            android:name=".ViewPagerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SwitchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TransparentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ScrollActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ViewPagerActivity2"
+            android:exported="false" />
+        <activity
+            android:name=".SwitchFragmentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DrawerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RecyclerFragmentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FragmentStackActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddPaddingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CoordinatorActivity"
+            android:exported="false"
+            android:theme="@style/CoordinatorTheme" />
+        <activity
+            android:name=".bottomnav.BottomNavActivity"
+            android:exported="false" />
+        <activity
+            android:name=".adjustresize.AdjustResizeActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
     </application>
 
 </manifest>
