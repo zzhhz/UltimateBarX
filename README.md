@@ -180,8 +180,44 @@ UltimateBarXKt.statusBarOnly(this, barConfig -> {
 ## Change Log
 [CHANGELOG](CHANGELOG.md)
 
+
+{
+val identifier =
+Resources.getSystem().getIdentifier("config_showNavigationBar", "bool", "android")
+val bl = context.resources.getBoolean(identifier)
+var var1 = false
+
+        Log.d("", "-----fullScreenGestureOn!: $bl")
+        try {
+            var var5: Class<*>?
+            val var6 = Class.forName("android.os.SystemProperties").also {
+                var5 = it
+            }.getMethod(
+                "get", *arrayOf<Class<*>>(
+                    String::class.java
+                )
+            ).invoke(var5, *arrayOf<Any>("qemu.hw.mainkeys")) as String
+            if ("1" == var6) {
+                var1 = false
+            } else if ("0" == var6) {
+                var1 = true
+            }
+            Log.d("", "-----fullScreenGestureOn2: $var1")
+        } catch (var3: Exception) {
+            var3.printStackTrace()
+        }
+
+
+
+
+        return false
+    }
+
 ## 联系我
 在使用中遇到任何问题，欢迎加我微信交流
+
+
+
 
 ![](screenshots/wechat.jpg)
 

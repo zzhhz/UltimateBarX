@@ -1,11 +1,11 @@
 package com.zackratos.ultimatebarx.ultimatebarx.java;
 
+import com.zackratos.ultimatebarx.ultimatebarx.bean.BarBackground;
+import com.zackratos.ultimatebarx.ultimatebarx.bean.BarConfig;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.LifecycleOwner;
-
-import com.zackratos.ultimatebarx.ultimatebarx.bean.BarBackground;
-import com.zackratos.ultimatebarx.ultimatebarx.bean.BarConfig;
 
 /**
  * @Author : zackratos

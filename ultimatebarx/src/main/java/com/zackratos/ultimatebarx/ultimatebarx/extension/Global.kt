@@ -1,5 +1,6 @@
 package com.zackratos.ultimatebarx.ultimatebarx.extension
 
+import android.os.Build
 import android.text.TextUtils
 import com.zackratos.ultimatebarx.ultimatebarx.rom.*
 import java.io.BufferedReader
@@ -18,8 +19,11 @@ internal fun getRom(): Rom {
         return MiuiRom()
     if (!TextUtils.isEmpty(getProp(Rom.KEY_VERSION_EMUI)))
         return EmuiRom()
-    if (!TextUtils.isEmpty(getProp(Rom.KEY_VERSION_VIVO)))
+    if (!TextUtils.isEmpty(getProp(Rom.KEY_VERSION_VIVO))) {
         return FuntouchRom()
+    } else if(TextUtils.equals("honeywell", Build.BRAND.lowercase())){
+        return HoneyWellRom()
+    }
     return OtherRom()
 }
 

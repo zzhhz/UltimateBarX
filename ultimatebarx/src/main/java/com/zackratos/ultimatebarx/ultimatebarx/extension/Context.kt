@@ -4,7 +4,10 @@ import android.content.Context
 import android.content.res.Configuration
 import android.graphics.Point
 import android.os.Build
+import android.text.TextUtils
 import android.util.DisplayMetrics
+import android.util.Log
+import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
@@ -18,8 +21,11 @@ import androidx.core.content.ContextCompat
  * @Describe :
  */
 
-private fun Context.getBarHeight(name: String): Int
-        = resources.getDimensionPixelSize(resources.getIdentifier(name, "dimen", "android"))
+private fun Context.getBarHeight(name: String): Int {
+    val identifier = resources.getIdentifier(name, "dimen", "android")
+    return resources.getDimensionPixelSize(identifier)
+
+}
 
 internal val Context.statusBarHeight: Int
     get() = getBarHeight("status_bar_height")
@@ -31,7 +37,8 @@ internal val Context.landscape: Boolean
     get() = resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
 
 @ColorInt
-internal fun Context.getColorInt(@ColorRes colorRes: Int): Int = ContextCompat.getColor(this, colorRes)
+internal fun Context.getColorInt(@ColorRes colorRes: Int): Int =
+    ContextCompat.getColor(this, colorRes)
 
 internal val Context.screenHeight: Int
     @RequiresApi(Build.VERSION_CODES.KITKAT)
@@ -45,19 +52,26 @@ internal val Context.screenHeight: Int
 @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
 internal fun Context.commonNavigationBarExist(): Boolean {
     val wm = getSystemService(Context.WINDOW_SERVICE) as WindowManager
-    val d = wm.defaultDisplay
-    val realDisplayMetrics = DisplayMetrics()
 
-    d.getRealMetrics(realDisplayMetrics)
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+        val d = wm.defaultDisplay
+        val realDisplayMetrics = DisplayMetrics()
 
-    val realHeight = realDisplayMetrics.heightPixels
-    val realWidth = realDisplayMetrics.widthPixels
+        d.getRealMetrics(realDisplayMetrics)
 
-    val displayMetrics = DisplayMetrics()
-    d.getMetrics(displayMetrics)
+        val realHeight = realDisplayMetrics.heightPixels
+        val realWidth = realDisplayMetrics.widthPixels
 
-    val displayHeight = displayMetrics.heightPixels
-    val displayWidth = displayMetrics.widthPixels
+        val displayMetrics = DisplayMetrics()
+        d.getMetrics(displayMetrics)
 
-    return realWidth - displayWidth > 0 || realHeight - displayHeight > 0
+        val displayHeight = displayMetrics.heightPixels
+        val displayWidth = displayMetrics.widthPixels
+
+        return realWidth - displayWidth > 0 || realHeight - displayHeight > 0
+    } else {
+        val systemBar =
+            wm.currentWindowMetrics.windowInsets.getInsets(WindowInsets.Type.systemBars())
+        return systemBar.bottom > 0
+    }
 }
